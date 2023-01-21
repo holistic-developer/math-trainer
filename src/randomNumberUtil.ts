@@ -9,6 +9,9 @@ export function getRandomInt(min: number, max: number): number {
 }
 
 export function getRandomIntExcept(min: number, max: number, not: number[]): number {
+    if (min == max) {
+        return min;
+    }
     let result = getRandomInt(min, max);
     while (not.includes(result)) {
         result = getRandomInt(min, max);
