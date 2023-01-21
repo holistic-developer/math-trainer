@@ -1,4 +1,4 @@
-import {useReducer} from "react";
+import {useReducer, useRef} from "react";
 import {Answers} from "./Answers";
 import {getRandomInt, getRandomIntExcept} from "./randomNumberUtil";
 

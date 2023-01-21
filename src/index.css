@@ -34,11 +34,12 @@ main {
     height: 100vh;
     display: flex;
     flex-direction: row;
+    gap: min(2vw, 2vh);
     place-items: center;
     justify-content: space-around;
 }
 
-@media screen and (max-aspect-ratio: 1/1) {
+@media screen and (max-aspect-ratio: 1.2/1) {
     main {
         flex-direction: column;
     }
@@ -46,13 +47,15 @@ main {
 
 button {
     min-width: 2em;
-    padding: min(3vw, 3vh);
+    padding: min(2vw, 2vh);
     border-radius: 0.2em;
     transition: scale 0.1s ease-in-out;
+    background-color: var(--background);
 }
 
-button:hover {
+button:hover:active {
     scale: 1.1;
+    background-color: var(--background);
 }
 
 .answers {

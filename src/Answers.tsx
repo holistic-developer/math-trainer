@@ -26,6 +26,7 @@ export const Answers: React.FC<{ answers: number[]; correct: number, success: ()
                     key={index}
                     onClick={(event) => {
                         if (number === correct) {
+                            event.currentTarget.blur();
                             resetErrors();
                         } else {
                             addError(event);
