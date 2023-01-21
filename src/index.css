@@ -17,7 +17,7 @@
     font-family: sans-serif;
     font-synthesis: none;
     text-rendering: optimizeLegibility;
-    font-size: xxx-large;
+    font-size: min(10vw, 10vh);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     -webkit-text-size-adjust: 100%;
@@ -33,7 +33,6 @@ main {
     width: 100vw;
     height: 100vh;
     display: flex;
-    gap: 5vh;
     flex-direction: row;
     place-items: center;
     justify-content: space-around;
@@ -46,8 +45,8 @@ main {
 }
 
 button {
-    width: 3.5em;
-    padding: 1em;
+    min-width: 2em;
+    padding: min(3vw, 3vh);
     border-radius: 0.2em;
     transition: scale 0.1s ease-in-out;
 }
