@@ -44,7 +44,9 @@ export const Example: React.FC = () => {
             <h1>{a} {addition ? '+' : '-'} {b} =</h1>
             <Answers correct={correct}
                      answers={answers}
-                     success={dispatch}/>
+                     success={() => {
+                         dispatch();
+                     }}/>
         </main>
     );
 }

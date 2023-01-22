@@ -3,6 +3,8 @@
 
     --primary: #abb2bf;
     --background: #1e2127;
+    --correct: limegreen;
+    --wrong: red;
 }
 
 
@@ -10,6 +12,8 @@
     :root {
         --primary: #1e2127;
         --background: #abb2bf;
+        --correct: green;
+        --wrong: darkred;
     }
 }
 
@@ -33,15 +37,15 @@ main {
     width: 100vw;
     height: 100vh;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     gap: min(2vw, 2vh);
     place-items: center;
     justify-content: space-around;
 }
 
-@media screen and (max-aspect-ratio: 1.2/1) {
+@media screen and (min-aspect-ratio: 1.4/1) {
     main {
-        flex-direction: column;
+        flex-direction: row;
     }
 }
 
@@ -68,11 +72,22 @@ button:hover:active {
     0% { transform: rotate(0deg); }
     20% { transform: rotate(5deg); }
     40% { transform: rotate(-5deg); }
+    50% { background-color: var(--wrong)}
     60% { transform: rotate(5deg); }
     80% { transform: rotate(-5deg); }
     100% { transform: rotate(0deg); }
 }
 
+@keyframes flip {
+    0% { transform: rotate3d(0)}
+    50% { background-color: var(--correct)}
+    100% { transform: rotate3d(1, 0, 0, 1turn); }
+}
+
 .wrong {
     animation: wiggle 0.5s;
+}
+
+.correct {
+    animation: flip 0.7s;
 }
