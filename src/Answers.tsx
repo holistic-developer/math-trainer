@@ -5,7 +5,6 @@ export const Answers: React.FC<{ answers: number[]; correct: number, success: ()
     const [errors, setErrors] = useState<HTMLButtonElement[]>([]);
 
     const addError = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-        event.currentTarget.disabled = true
         event.currentTarget.className = "wrong";
         setErrors([...errors, event.currentTarget]);
     }
@@ -23,12 +22,16 @@ export const Answers: React.FC<{ answers: number[]; correct: number, success: ()
         <div className="answers">
             {answers.map((number, index) => (
                 <button
-                    key={index}
+                    key={number + "+" + index}
                     onClick={(event) => {
+                        const button = event.currentTarget;
+                        button.disabled = true
                         if (number === correct) {
                             event.currentTarget.className = "correct";
-                            event.currentTarget.blur();
-                            resetErrors();
+                            setTimeout(() => {
+                                button.disabled = false;
+                                resetErrors();
+                            }, 600);
                         } else {
                             addError(event);
                         }

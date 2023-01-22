@@ -78,10 +78,10 @@ button:hover:active {
     100% { transform: rotate(0deg); }
 }
 
-@keyframes flip {
-    0% { transform: rotate3d(0)}
-    50% { background-color: var(--correct)}
-    100% { transform: rotate3d(1, 0, 0, 1turn); }
+@keyframes jump {
+    40% { transform: translate3d(0, -3vh, 0); }
+    50% { background-color: var(--correct);}
+    70% { transform: translate3d(0);}
 }
 
 .wrong {
@@ -89,5 +89,5 @@ button:hover:active {
 }
 
 .correct {
-    animation: flip 0.7s;
+    animation: jump 0.6s;
 }
