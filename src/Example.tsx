@@ -1,4 +1,4 @@
-import {useReducer, useRef} from "react";
+import {ReactElement, ReactHTMLElement, useEffect, useReducer, useRef, useState} from "react";
 import {Answers} from "./Answers";
 import {getRandomInt, getRandomIntExcept} from "./randomNumberUtil";
 
@@ -39,14 +39,27 @@ export const Example: React.FC = () => {
         answers: [],
         correct: 3
     }, arg => calculateExample(arg));
+    const [started, setStarted] = useState<boolean>(false);
+    const main = useRef<HTMLElement>(null);
+
+
     return (
-        <main>
-            <h1>{a} {addition ? '+' : '-'} {b} =</h1>
-            <Answers correct={correct}
-                     answers={answers}
-                     success={() => {
-                         dispatch();
-                     }}/>
+        <main ref={main}>
+            {started ? (
+                    <>
+                        <h1>{a} {addition ? '+' : '-'} {b} =</h1>
+                        <Answers correct={correct}
+                                 answers={answers}
+                                 success={() => {
+                                     dispatch();
+                                 }}/>
+                    </>
+                ) :
+                (
+                    <>
+                        <button onClick={() => main.current?.requestFullscreen().then(() => setStarted(true))}>±</button>
+                    </>
+                )}
         </main>
     );
 }
