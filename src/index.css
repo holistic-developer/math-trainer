@@ -1,19 +1,21 @@
 :root {
-    color-scheme: light dark;
-
-    --primary: #abb2bf;
-    --background: #1e2127;
-    --correct: limegreen;
-    --wrong: red;
+    color-scheme: dark, light;
+    --primary: #eee8d5 ;
+    --background: #586e75;
+    --input: #839496;
+    --disabled: #657b83;
+    --correct: #859900;
+    --wrong: #dc322f;
+    --accent: #268bd2;
 }
 
 
 @media (prefers-color-scheme: light) {
     :root {
-        --primary: #1e2127;
-        --background: #abb2bf;
-        --correct: green;
-        --wrong: darkred;
+        --primary: #073642;
+        --input: #93a1a1;
+        --disabled: #657b83;
+        --background: #eee8d5;
     }
 }
 
@@ -25,6 +27,8 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     -webkit-text-size-adjust: 100%;
+    color: var(--primary);
+    text-shadow: 0 0 0.2vh var(--primary);
 }
 
 body {
@@ -41,6 +45,7 @@ main {
     gap: min(2vw, 2vh);
     place-items: center;
     justify-content: space-around;
+    background-color: var(--background);
 }
 
 @media screen and (min-aspect-ratio: 1.4/1) {
@@ -54,12 +59,37 @@ button {
     padding: min(2vw, 2vh);
     border-radius: 0.2em;
     transition: scale 0.1s ease-in-out;
-    background-color: var(--background);
+    background-color: var(--input);
+    border-radius: 3vh;
+    border-width: 0;
+    box-shadow: 0 0 1vh var(--input);
+}
+
+button:disabled {
+    background-color: var(--disabled);
 }
 
 button:hover:active {
     scale: 1.1;
-    background-color: var(--background);
+    background-color: var(--input);
+}
+
+.progress {
+    position: absolute;
+    bottom: 1vh;
+    width: 90vw;
+    height: 3vh;
+    border-radius: 1vh;
+    background-color: var(--input);
+    box-shadow: 0 0 2vh var(--input);
+}
+
+.progress-bar {
+    height: 100%;
+    border-radius: 1vh;
+    transition: 0.3s width ease-in;
+    background-color: var(--accent);
+    box-shadow: 0 0 2vh var(--accent);
 }
 
 .answers {
@@ -69,19 +99,39 @@ button:hover:active {
 }
 
 @keyframes wiggle {
-    0% { transform: rotate(0deg); }
-    20% { transform: rotate(5deg); }
-    40% { transform: rotate(-5deg); }
-    50% { background-color: var(--wrong)}
-    60% { transform: rotate(5deg); }
-    80% { transform: rotate(-5deg); }
-    100% { transform: rotate(0deg); }
+    0% {
+        transform: rotate(0deg);
+    }
+    20% {
+        transform: rotate(5deg);
+    }
+    40% {
+        transform: rotate(-5deg);
+    }
+    50% {
+        background-color: var(--wrong)
+    }
+    60% {
+        transform: rotate(5deg);
+    }
+    80% {
+        transform: rotate(-5deg);
+    }
+    100% {
+        transform: rotate(0deg);
+    }
 }
 
 @keyframes jump {
-    40% { transform: translate3d(0, -3vh, 0); }
-    50% { background-color: var(--correct);}
-    70% { transform: translate3d(0);}
+    40% {
+        transform: translate3d(0, -3vh, 0);
+    }
+    50% {
+        background-color: var(--correct);
+    }
+    70% {
+        transform: translate3d(0);
+    }
 }
 
 .wrong {
