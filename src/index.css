@@ -65,13 +65,18 @@ button {
     box-shadow: 0 0 1vh var(--input);
 }
 
-button:disabled {
-    background-color: var(--disabled);
+button:hover {
+    scale: 1.05;
 }
 
 button:hover:active {
     scale: 1.1;
     background-color: var(--input);
+}
+
+button:disabled, button:hover:disabled{
+    background-color: var(--disabled);
+    box-shadow: 0 0 1vh var(--disabled);
 }
 
 .progress {

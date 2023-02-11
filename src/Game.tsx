@@ -14,7 +14,7 @@ export const Game: React.FC = () => {
                 (
                     <>
                         <p>{rounds} Beispiele</p>
-                        <span>
+                        <span style={{display: "flex", gap: "1vw"}}>
                             <button onClick={() => setRounds(prev => prev + 1)}>+</button>
                             <button onClick={() => setRounds(prev => prev - 1)}
                             disabled={rounds <= 2}>−</button>
