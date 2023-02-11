@@ -42,20 +42,23 @@ export const Examples: React.FC<{ rounds: number, done: () => void }> = ({rounds
     }, arg => calculateExample(arg));
     const [completed, setCompleted] = useState<number>(0);
 
+    const solved = () => {
+        setCompleted(completed => completed + 1)
+        if (completed + 1 >= rounds) {
+            setTimeout(done, 500)
+        } else {
+            dispatch();
+        }
+    };
+
     return (
         <>
             <h1>{a} {addition ? '+' : '-'} {b} =</h1>
             <Answers correct={answer}
                      answers={options}
-                     success={() => {
-                         if(completed + 1 >= rounds) {
-                             done();
-                         }
-                         setCompleted(completed => completed+1)
-                         dispatch();
-                     }}/>
+                     success={solved}/>
             <div className="progress">
-                <div className="progress-bar" style={{width:`${completed/rounds*100}%`}}> </div>
+                <div className="progress-bar" style={{width: `${completed / rounds * 100}%`}}></div>
             </div>
         </>
     );
