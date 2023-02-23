@@ -1,6 +1,6 @@
 :root {
     color-scheme: dark, light;
-    --primary: #eee8d5 ;
+    --primary: #eee8d5;
     --background: #586e75;
     --input: #839496;
     --disabled: #657b83;
@@ -23,12 +23,17 @@
     font-family: sans-serif;
     font-synthesis: none;
     text-rendering: optimizeLegibility;
-    font-size: min(10vw, 10vh);
+    font-size: min(9vw, 9vh);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     -webkit-text-size-adjust: 100%;
     color: var(--primary);
     text-shadow: 0 0 0.2vh var(--primary);
+    text-align: center;
+}
+
+.small {
+    font-size: min(5vw, 5vh)
 }
 
 body {
@@ -74,7 +79,7 @@ button:hover:active {
     background-color: var(--input);
 }
 
-button:disabled, button:hover:disabled{
+button:disabled, button:hover:disabled {
     background-color: var(--disabled);
     box-shadow: 0 0 1vh var(--disabled);
 }
