@@ -32,8 +32,8 @@
     text-align: center;
 }
 
-.small {
-    font-size: min(5vw, 5vh)
+.small-font {
+    font-size: min(4vw, 4vh)
 }
 
 body {

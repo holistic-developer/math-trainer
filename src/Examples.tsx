@@ -1,6 +1,7 @@
 import { useCallback, useReducer, useState } from 'react';
 import { Answers } from './Answers';
 import { getRandomInt, getRandomIntExcept } from './randomNumberUtil';
+import { GameMode } from './Game';
 
 export const minValue = 1;
 export const maxValue = 10;
@@ -13,10 +14,10 @@ type ExampleState = {
   answer: number;
 };
 
-export const Examples: React.FC<{ rounds: number; onlyDoubling: boolean; done: () => void }> = ({ rounds, onlyDoubling, done }) => {
+export const Examples: React.FC<{ rounds: number; gameMode: GameMode; done: () => void }> = ({ rounds, gameMode, done }) => {
   const calculateExample = useCallback(
     (state: ExampleState) => {
-      if (onlyDoubling) {
+      if (gameMode === GameMode.DOUBLING) {
         state.addition = true;
         state.a = getRandomIntExcept(minValue, maxValue, [state.a]);
         state.b = state.a;
@@ -38,7 +39,7 @@ export const Examples: React.FC<{ rounds: number; onlyDoubling: boolean; done: (
       state.answer = correct;
       return { ...state };
     },
-    [rounds, onlyDoubling]
+    [rounds, gameMode]
   );
 
   const [{ a, b, addition, options, answer }, dispatch] = useReducer(
