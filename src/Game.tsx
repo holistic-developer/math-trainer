@@ -17,7 +17,7 @@ export const Game: React.FC = () => {
   return (
     <main ref={main}>
       {gameMode ? (
-        <Examples rounds={rounds} gameMode={gameMode} maxValue={maxValue} done={() => document.exitFullscreen().then(() => setGameMode(GameMode.DONE))} />
+        <Examples rounds={rounds} gameMode={gameMode} maxValue={maxValue} done={() => document.exitFullscreen().finally(() => setGameMode(GameMode.DONE))} />
       ) : (
         <>
           <p>

@@ -1,21 +1,21 @@
 :root {
     color-scheme: dark, light;
-    --primary: #eee8d5;
-    --background: #586e75;
-    --input: #839496;
-    --disabled: #657b83;
-    --correct: #859900;
-    --wrong: #dc322f;
-    --accent: #268bd2;
+    --primary: #d8dee9;
+    --background: #2e3440;
+    --input: #4c566a;
+    --disabled: #3b4252;
+    --correct: #a3be8c;
+    --wrong: #bf616a;
+    --accent: #5e81ac;
 }
 
 
 @media (prefers-color-scheme: light) {
     :root {
-        --primary: #073642;
-        --input: #93a1a1;
-        --disabled: #657b83;
-        --background: #eee8d5;
+        --primary: #2e3440;
+        --input: #d8dee9;
+        --disabled: #e5e9f0;
+        --background: #eceff4;
     }
 }
 
@@ -28,7 +28,6 @@
     -moz-osx-font-smoothing: grayscale;
     -webkit-text-size-adjust: 100%;
     color: var(--primary);
-    text-shadow: 0 0 0.2vh var(--primary);
     text-align: center;
 }
 
@@ -55,6 +54,10 @@ main {
     place-items: center;
     justify-content: space-around;
     background-color: var(--background);
+}
+
+h1 {
+    width: 30vw;
 }
 
 @media screen and (min-aspect-ratio: 1.4/1) {
