@@ -38,7 +38,8 @@ section {
 .game-modes {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    gap: 4vmin;
+    row-gap: 7vmin;
+    column-gap: 3vmin;
 }
 
 .game-modes>button {
