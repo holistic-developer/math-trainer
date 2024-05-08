@@ -8,30 +8,58 @@ export const minValue = 1;
 type ExampleState = {
   a: number;
   b: number;
-  addition: boolean;
+  operation: "+" | "-" | "×";
   options: number[];
   answer: number;
 };
 
-export const Examples: React.FC<{ rounds: number; gameMode: GameMode; maxValue: number; done: () => void }> = ({ rounds, gameMode, maxValue, done }) => {
+export const Examples: React.FC<{ rounds: number; gameMode: GameMode; done: () => void }> = ({ rounds, gameMode, done }) => {
   const calculateExample = useCallback(
     (state: ExampleState) => {
+      let maxValue = 0;
       switch (gameMode) {
-        case GameMode.ADDITION:
-          state.addition = true;
+        case GameMode.ADDITION_10: 
+        case GameMode.ADDITION_20:
+        case GameMode.ADDITION_100:
+          state.operation = '+';
           break;
-        case GameMode.SUBTRACTION:
-          state.addition = false;
+        case GameMode.SUBTRACTION_10:
+        case GameMode.SUBTRACTION_20:
+        case GameMode.SUBTRACTION_100:
+          state.operation = '-';
+          break;
+        case GameMode.MULTIPLICATION_100:
+          state.operation = '×';
           break;
         default:
-          state.addition = Boolean(getRandomInt(0, 1));
+          state.operation = Boolean(getRandomInt(0, 1))? '+' : '-';
       }
-      state.a = getRandomIntExcept(state.addition ? minValue : Math.floor(maxValue / 2), state.addition ? maxValue - 1 : maxValue, [state.a]);
-      state.b = getRandomIntExcept(minValue, state.addition ? maxValue - state.a : state.a - 1, [state.b]);
+      switch (gameMode) {
+        case GameMode.ADDITION_10:
+        case GameMode.SUBTRACTION_10:
+        case GameMode.ADDITION_SUBTRACTION_10:
+          maxValue = 10;
+          break;
+        case GameMode.ADDITION_20:
+        case GameMode.SUBTRACTION_20:
+        case GameMode.ADDITION_SUBTRACTION_20:
+          maxValue = 20;
+          break;
+        default:
+          maxValue = 100;
+      }
 
-      const minAnswer = state.addition ? 2 : 1;
-      const maxAnswer = state.addition ? maxValue : maxValue - 1;
-      const correct = state.addition ? state.a + state.b : state.a - state.b;
+      if(state.operation !== '+' && state.operation !== '-') {
+        state.a = getRandomIntExcept(1, 10, [state.a]);
+        state.b = getRandomIntExcept(1, 10, [state.b]);
+      } else {
+        state.a = getRandomIntExcept(state.operation === '+' ? minValue : Math.floor(maxValue / 2), state.operation === '+' ? maxValue - 1 : maxValue, [state.a]);
+        state.b = getRandomIntExcept(minValue, state.operation === '+' ? maxValue - state.a : state.a - 1, [state.b]);
+      }
+      
+      const minAnswer = state.operation === '+' ? 2 : 1;
+      const maxAnswer = state.operation === '-' ? maxValue - 1 : maxValue;
+      const correct = state.operation === '+' ? state.a + state.b : state.operation === '-' ? state.a - state.b : state.a * state.b;
       const answers: number[] = [];
       for (let i = 0; i < 5; i++) {
         answers.push(getRandomIntExcept(minAnswer, maxAnswer, [...answers, correct]));
@@ -44,15 +72,15 @@ export const Examples: React.FC<{ rounds: number; gameMode: GameMode; maxValue: 
     [rounds, gameMode]
   );
 
-  const [{ a, b, addition, options, answer }, dispatch] = useReducer(
+  const [{ a, b, operation, options, answer }, dispatch] = useReducer(
     calculateExample,
     {
       a: 1,
       b: 2,
-      addition: true,
+      operation: "+",
       options: [],
       answer: 0,
-    },
+    } as ExampleState,
     (arg) => calculateExample(arg)
   );
   const [completed, setCompleted] = useState<number>(0);
@@ -69,7 +97,7 @@ export const Examples: React.FC<{ rounds: number; gameMode: GameMode; maxValue: 
   return (
     <>
       <h1>
-        {a} {addition ? '+' : '-'} {b} =
+        {a} {operation} {b} =
       </h1>
       <Answers correct={answer} answers={options} success={solved} />
       <div className="progress">

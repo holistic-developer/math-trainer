@@ -23,7 +23,7 @@
     font-family: sans-serif;
     font-synthesis: none;
     text-rendering: optimizeLegibility;
-    font-size: 9vmin;
+    font-size: 8vmin;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     -webkit-text-size-adjust: 100%;
@@ -31,8 +31,18 @@
     text-align: center;
 }
 
-.small-font {
-    font-size: 6vmin;
+section {
+    padding: 2vmin;
+}
+
+.game-modes {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 4vmin;
+}
+
+.game-modes>button {
+    font-size: 4vmin;
 }
 
 p {
@@ -67,9 +77,9 @@ main {
 }
 
 button {
-    min-width: 2em;
+    min-width: 2rem;
     padding: 2vmin;
-    border-radius: 0.2em;
+    border-radius: 0.2rem;
     transition: scale 0.1s ease-in-out;
     background-color: var(--input);
     border-radius: 3vh;
@@ -86,7 +96,8 @@ button:hover:active {
     background-color: var(--input);
 }
 
-button:disabled, button:hover:disabled {
+button:disabled,
+button:hover:disabled {
     background-color: var(--disabled);
     box-shadow: 0 0 1vh var(--disabled);
 }
@@ -112,28 +123,34 @@ button:disabled, button:hover:disabled {
 .answers {
     display: grid;
     grid: auto-flow / 1fr 1fr 1fr;
-    gap: 1em;
+    gap: 5vmin;
 }
 
 @keyframes wiggle {
     0% {
         transform: rotate(0deg);
     }
+
     20% {
         transform: rotate(5deg);
     }
+
     40% {
         transform: rotate(-5deg);
     }
+
     50% {
         background-color: var(--wrong)
     }
+
     60% {
         transform: rotate(5deg);
     }
+
     80% {
         transform: rotate(-5deg);
     }
+
     100% {
         transform: rotate(0deg);
     }
@@ -143,9 +160,11 @@ button:disabled, button:hover:disabled {
     40% {
         transform: translate3d(0, -3vh, 0);
     }
+
     50% {
         background-color: var(--correct);
     }
+
     70% {
         transform: translate3d(0);
     }
