@@ -8,21 +8,17 @@ Try it yourself [https://holistic-developer.github.io/math-trainer/](https://hol
 
 ## How to build
 
-Install the defined package manager with corepack
-
+Prepare your workspace by installing all dependencies first using
 ```shell
-corepack enable
-corepack prepare
+npm install
 ```
 
 Run the following command to start the development server
 
 ```shell
-pnpm dev
+npm dev
 ```
 
-To deploy a new version of the application to github pages run
+## How to deploy
 
-```shell
-pnpm run deploy
-```
+The latest working build on the main branch will be published as a github page.
